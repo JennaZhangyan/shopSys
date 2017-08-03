@@ -1,8 +1,6 @@
 package osPage;
 
-import goodsmaintain.*;
-import goodsmanage.*;
-import cash.*;
+import deal.*;
 import sqlFile.*;
 import java.io.IOException;
 import java.util.Scanner;
@@ -55,23 +53,25 @@ public class MainPage {
 			System.out.println("********************************");
 			System.out.println("请选择，输入数字或按0返回上一级菜单");
 			int chose=scanner.nextInt();
+			
+			GoodsMtPage gMtPage=new GoodsMtPage();
 			switch (chose) {
 			case 0:
 				return;
 			case 1:
-				
+				gMtPage.addGoods();
 				break;
 			case 2:
-				
+				gMtPage.updateGoods();
 				break;
 			case 3:
-				
+				gMtPage.deletGoods();
 				break;
 			case 4:
-				
+				gMtPage.showAll();
 				break;
 			case 5:
-				
+				gMtPage.queryGoods();
 				break;
 				
 			default:
