@@ -9,13 +9,20 @@ public class Goods {
 	public Goods() {
 		// TODO Auto-generated constructor stub
 	}
-	public Goods(String name,Double price,int num) {
+	public Goods(int gid,String name,Double price,int num) {
 		// TODO Auto-generated constructor stub
+		this.gID=gid;
 		this.gName=name;
 		this.gPrice=price;
 		this.gNum=num;
 	}
 	
+	public Goods(String name, double price, int num) {
+		// TODO Auto-generated constructor stub
+		this.gName=name;
+		this.gPrice=price;
+		this.gNum=num;
+	}
 	
 	public Goods(int gid, String nextLine) {
 		// TODO Auto-generated constructor stub
@@ -34,6 +41,7 @@ public class Goods {
 		this.gID=gid;
 		this.gPrice=nextDouble;
 	}
+
 	
 	
 	

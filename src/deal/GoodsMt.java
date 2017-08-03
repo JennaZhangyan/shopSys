@@ -3,6 +3,7 @@ package deal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import entity.Goods;
 import sqlFile.DBClose;
@@ -16,7 +17,7 @@ public class GoodsMt {
 	public boolean add(Goods good) {
 		conn = DBConn.getConn();
 		boolean flag = false;
-		String sql = "INSERT INTO GOODS(GNAME,GPRICE,GNUM) VALUES(?,?,?)";
+		String sql = "INSERT INTO GOODS(GNAME,GPRICE,GNUM) VALUES (?,?,?)";
 		try {
 			prestmt = conn.prepareStatement(sql);
 			prestmt.setString(1, good.getgName());
@@ -78,15 +79,53 @@ public class GoodsMt {
 
 	}
 
-	public void delet(Goods good) {
-
+	public boolean delet(Goods good) {
+		conn=DBConn.getConn();
+		boolean flag=false;
+		String sql="DELET FROM GOODS WHRER GNAME=?";
+		try {
+			prestmt=conn.prepareStatement(sql);
+			prestmt.setString(1, good.getgName());
+			int r=prestmt.executeUpdate();
+			if (r>0) {
+				flag=true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return flag;
+	}
+/*在query中rs已经关闭了，所以在外部是不能调用的*/
+	public ArrayList<Goods> queryAll() {
+		ArrayList<Goods> goodsList = new ArrayList<Goods>();
+		conn = DBConn.getConn();
+		boolean flag = false;
+		String sql = "SELECT * FROM GOODS";
+		try {
+			prestmt = conn.prepareStatement(sql);
+			rs = prestmt.executeQuery();
+			while(rs.next()) {
+				int gid=rs.getInt(1);
+				String gname = rs.getString(2);
+				double gprice = rs.getDouble(3); 		
+				int gnum = rs.getInt(4);
+				
+				Goods goods = new Goods(gid,gname,gprice,gnum);	//创建Goods对象，并赋值.
+				goodsList.add(goods);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			DBClose.queryClose(rs, prestmt, conn);
+		}
+		return goodsList;
 	}
 
-	public void showAll() {
-
-	}
-
-	public boolean query(String name) {
+	public ArrayList<Goods> query(String name) {
+		ArrayList<Goods> goodsList = new ArrayList<Goods>();
 		conn = DBConn.getConn();
 		boolean flag = false;
 		String sql = "SELECT GNAME,GPRICE,GNUM FROM GOODS WHRER GNAME=?";
@@ -95,15 +134,57 @@ public class GoodsMt {
 			prestmt.setString(0, name);
 
 			rs = prestmt.executeQuery();
-			if (rs != null) {
-				flag = true;
+			while(rs.next()) {
+				int gid=rs.getInt(1);
+				String gname = rs.getString(2);
+				double gprice = rs.getDouble(3); 		
+				int gnum = rs.getInt(4);
+				
+				Goods goods = new Goods(gid,gname,gprice,gnum);	//创建Goods对象，并赋值.
+				goodsList.add(goods);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
-			DBClose.addClose(prestmt, conn);
+			DBClose.queryClose(rs, prestmt, conn);
 		}
-		return flag;
+		return goodsList;
+	}
+	public ArrayList<Goods> query(int key) {
+		ArrayList<Goods> goodsList = new ArrayList<Goods>();
+		conn = DBConn.getConn();
+		boolean flag = false;
+		String sql=null;
+		switch (key) {
+		case 1:
+			sql = "SELECT * FROM GOODS ORDER BY GNUM ASC";
+			break;
+		case 2:
+			sql = "SELECT * FROM GOODS ORDER BY GPRICE ASC";
+			break;
+		default:
+			break;
+		}
+		
+		try {
+			prestmt = conn.prepareStatement(sql);
+			rs = prestmt.executeQuery();
+			while(rs.next()) {
+				int gid=rs.getInt(1);
+				String gname = rs.getString(2);
+				double gprice = rs.getDouble(3); 		
+				int gnum = rs.getInt(4);
+				
+				Goods goods = new Goods(gid,gname,gprice,gnum);	//创建Goods对象，并赋值.
+				goodsList.add(goods);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			DBClose.queryClose(rs, prestmt, conn);
+		}
+		return goodsList;
 	}
 }

@@ -49,7 +49,7 @@ public class MainPage {
 					+ "\t2.更改商品\n"
 					+ "\t3.删除商品\n"
 					+ "\t4.显示所有商品\n"
-					+ "\t5.添加商品\n");
+					+ "\t5.添加商品");
 			System.out.println("********************************");
 			System.out.println("请选择，输入数字或按0返回上一级菜单");
 			int chose=scanner.nextInt();
