@@ -42,7 +42,6 @@ public class GoodsMt {
 		boolean flag = false;
 
 		try {
-
 			switch (chose) {
 			case 1:
 				String sqlName = "UPDATE GOODS SET GNAME=? WHERE GID=?";
@@ -100,7 +99,6 @@ public class GoodsMt {
 	public ArrayList<Goods> queryAll() {
 		ArrayList<Goods> goodsList = new ArrayList<Goods>();
 		conn = DBConn.getConn();
-		boolean flag = false;
 		String sql = "SELECT * FROM GOODS";
 		try {
 			prestmt = conn.prepareStatement(sql);
@@ -127,11 +125,10 @@ public class GoodsMt {
 	public ArrayList<Goods> query(String name) {
 		ArrayList<Goods> goodsList = new ArrayList<Goods>();
 		conn = DBConn.getConn();
-		boolean flag = false;
-		String sql = "SELECT GNAME,GPRICE,GNUM FROM GOODS WHRER GNAME=?";
+		String sql = "SELECT * FROM GOODS WHERE GNAME=%?%";
 		try {
 			prestmt = conn.prepareStatement(sql);
-			prestmt.setString(0, name);
+			prestmt.setString(1, name);
 
 			rs = prestmt.executeQuery();
 			while(rs.next()) {
@@ -154,7 +151,6 @@ public class GoodsMt {
 	public ArrayList<Goods> query(int key) {
 		ArrayList<Goods> goodsList = new ArrayList<Goods>();
 		conn = DBConn.getConn();
-		boolean flag = false;
 		String sql=null;
 		switch (key) {
 		case 1:

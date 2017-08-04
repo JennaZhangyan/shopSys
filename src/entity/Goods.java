@@ -24,28 +24,23 @@ public class Goods {
 		this.gNum=num;
 	}
 	
-	public Goods(int gid, String nextLine) {
+	public Goods(int gid, String name) {
 		// TODO Auto-generated constructor stub
 		this.gID=gid;
-		this.gName=nextLine;
+		this.gName=name;
 	}
 	
-	public Goods(int gid, int nextInt) {
+	public Goods(int gid, int num) {
 		// TODO Auto-generated constructor stub
 		this.gID=gid;
-		this.gNum=nextInt;
+		this.gNum=num;
 	}
 	
-	public Goods(int gid, double nextDouble) {
+	public Goods(int gid, double price) {
 		// TODO Auto-generated constructor stub
 		this.gID=gid;
-		this.gPrice=nextDouble;
+		this.gPrice=price;
 	}
-
-	
-	
-	
-	
 	
 	public int getgID() {
 		return gID;

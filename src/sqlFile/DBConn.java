@@ -6,7 +6,9 @@ import java.sql.DriverManager;
 public final class DBConn {
 	public static Connection getConn() {
 		Connection conn=null;
-		String url = "jdbc:mysql://127.0.0.1:3306/select_test";
+// 		MySQL的JDBC URL编写方式：jdbc:mysql://主机名称：连接端口/数据库的名称?参数=值
+//		String url = "jdbc:mysql://127.0.0.1:3306/select_test";
+		String url = "jdbc:mysql://127.0.0.1:3306/shop_management";
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

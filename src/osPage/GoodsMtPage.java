@@ -38,7 +38,7 @@ public class GoodsMtPage {
 			Goods good = new Goods(na, p, nu);
 			boolean flag = gMt.add(good);
 			if (flag == true) {
-				System.out.println("\n\t!您已成功添加商品到数据库!");
+				System.out.println("\n!您已成功添加商品到数据库!");
 			} else {
 				System.out.println("添加商品失败");
 			}
@@ -63,7 +63,7 @@ public class GoodsMtPage {
 				System.out.println("无此商品");
 			}
 			else {
-				System.out.println("商品名称\t商品价格\t商品数量");
+				System.out.println("\n商品名称\t商品价格\t商品数量");
 				for (Goods goods : goodsList) {
 					System.out.println(goods.getgName()+"\t"+goods.getgPrice()+"\t"+goods.getgNum());
 				}
@@ -85,7 +85,7 @@ public class GoodsMtPage {
 //				System.out.println("无此商品");
 //			}
 
-			System.out.println("选择您要更改的内容：\n" + "1.更改商品名称\n" + "2.更改商品价格\n" + "3.更改商品数量\n");
+			System.out.println("\n选择您要更改的内容：\n" + "1.更改商品名称\n" + "2.更改商品价格\n" + "3.更改商品数量\n");
 			int chose = sc.nextInt();
 			boolean flag2=false;
 			switch (chose) {
@@ -109,7 +109,7 @@ public class GoodsMtPage {
 				break;
 			}
 			if (flag2) {
-				System.out.println("商品更新成功");
+				System.out.println("\n商品更新成功");
 			}
 			System.out.println("是否继续(y/n)");
 			go = sc.next() == "y" ? true : false;
@@ -127,10 +127,10 @@ public class GoodsMtPage {
 			String na = sc.nextLine();
 			ArrayList<Goods> goodsList = gMt.query(na);
 			if (goodsList==null||goodsList.size()<=0) {
-				System.out.println("无此商品");
+				System.out.println("\n无此商品");
 			}
 			else {
-				System.out.println("商品名称\t商品价格\t商品数量");
+				System.out.println("\n商品名称\t商品价格\t商品数量");
 				for (Goods goods : goodsList) {
 					System.out.println(goods.getgName()+"\t"+goods.getgPrice()+"\t"+goods.getgNum());
 				}
@@ -153,7 +153,7 @@ public class GoodsMtPage {
 //				System.out.println("无此商品");
 //			}
 			
-			System.out.println("是否确定要删除(y/n)?:");
+			System.out.println("\n是否确定要删除(y/n)?:");
 			boolean flag1=sc.next()=="y"?true:false;
 			if (flag1) {
 				Goods goodsdelet=new Goods(gid,na);
@@ -176,10 +176,10 @@ public class GoodsMtPage {
 
 		ArrayList<Goods> goodsList = gMt.queryAll();
 		if (goodsList==null||goodsList.size()<=0) {
-			System.out.println("无此商品");
+			System.out.println("\n无商品");
 		}
 		else {
-			System.out.println("商品名称\t商品价格\t商品数量\t备注");
+			System.out.println("\n商品名称\t商品价格\t商品数量\t备注");
 			for (Goods goods : goodsList) {
 				if (goods.getgNum()<10) {
 					System.out.println(goods.getgName()+"\t"+goods.getgPrice()+"\t"+goods.getgNum()+"\t*该商品已不足10件");
@@ -189,6 +189,7 @@ public class GoodsMtPage {
 				}
 				
 			}
+			System.out.println("\n\n");
 		}
 //		int gid=goodsList.get(0).getgID();
 //		if (flag) {
@@ -232,14 +233,15 @@ public class GoodsMtPage {
 			break;
 		}
 		if (goodsList==null||goodsList.size()<=0) {
-			System.out.println("无此商品");
+			System.out.println("\n无此商品");
 		}
 		else {
-			System.out.println("商品名称\t商品价格\t商品数量");
+			System.out.println("\n商品名称\t商品价格\t商品数量");
 			for (Goods goods : goodsList) {
 				System.out.println(goods.getgName()+"\t"+goods.getgPrice()+"\t"+goods.getgNum());
 			}
 		}
+		System.out.println("\n\n");
 	}
 
 }
